@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>วันที่และเวลาภาษาไทย</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700&display=swap');
+
+        body {
+            font-family: 'Sarabun', sans-serif;
+            background: linear-gradient(135deg, #63f1ef, #5cb1f6);
+            min-height: 100vh;
+        }
+
+        .code-container {
+            background-color: #1e293b;
+            border-radius: 0.5rem;
+            overflow: auto;
+        }
+
+        .code-container pre {
+            padding: 1.5rem;
+            color: #e2e8f0;
+            font-family: 'Fira Code', monospace;
+            line-height: 1.5;
+        }
+
+        .code-container code {
+            color: #e2e8f0;
+        }
+
+        .comment {
+            color: #94a3b8;
+        }
+
+        .string {
+            color: #a5d6ff;
+        }
+
+        .keyword {
+            color: #ff7b72;
+        }
+
+        .function {
+            color: #d2a8ff;
+        }
+
+        .variable {
+            color: #ffa657;
+        }
+
+        .date-format {
+            border-left: 4px solid #f65cc0;
+            padding-left: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .date-format-title {
+            font-weight: 600;
+            color: #4305ef;
+        }
+
+        .date-format-result {
+            font-size: 1.1rem;
+            color: #f60303;
+        }
+
+        .date-format-code {
+            font-family: monospace;
+            background: #f1f5f9;
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.25rem;
+            font-size: 0.9rem;
+            color: #334155;
+        }
+    </style>
+</head>
+
+<body class="p-4 md:p-8">
+    <div class="max-w-5xl mx-auto">
+        <div class="bg-white rounded-xl shadow-xl overflow-hidden">
+            <!-- ส่วนหัว -->
+            <div class="bg-gradient-to-r from-red-500 to-pink-600 p-6 text-white">
+                <h1 class="text-2xl md:text-3xl font-bold text-center">วันที่และเวลาภาษาไทย</h1>
+                <p class="text-center mt-2 text-blue-100">การแปลงวันที่และเวลาเป็นภาษาไทยด้วย JavaScript</p>
+            </div>
+
+            <!-- ส่วนแสดงผล -->
+            <div class="p-6 md:p-8 bg-gradient-to-b from-blue-50 to-purple-50">
+                <div class="bg-white rounded-lg shadow-md p-6 mb-8">
+                    <h2 class="text-xl font-semibold mb-4 text-gray-800 border-b pb-2">
+                        ตัวอย่างรูปแบบวันที่และเวลาภาษาไทย</h2>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <div class="date-format">
+                                <p class="date-format-title">รูปแบบที่ 1: วันที่แบบสั้น</p>
+                                <p class="date-format-result" id="format1"></p>
+                                <p class="date-format-code">toLocaleDateString("th-TH", {day: "numeric", month: "short",
+                                    year: "numeric", weekday: "short"})</p>
+                            </div>
+
+                            <div class="date-format">
+                                <p class="date-format-title">รูปแบบที่ 2: วันที่แบบยาว</p>
+                                <p class="date-format-result" id="format2"></p>
+                                <p class="date-format-code">toLocaleDateString("th-TH", {day: "numeric", month: "long",
+                                    year: "numeric", weekday: "long"})</p>
+                            </div>
+
+                            <div class="date-format">
+                                <p class="date-format-title">รูปแบบที่ 3: เวลาพร้อมวันที่แบบสั้น</p>
+                                <p class="date-format-result" id="format3"></p>
+                                <p class="date-format-code">toLocaleTimeString("th-TH", {day: "numeric", month: "short",
+                                    year: "numeric", weekday: "short"})</p>
+                            </div>
+
+                            <div class="date-format">
+                                <p class="date-format-title">รูปแบบที่ 4: วันที่และเวลาแบบเต็ม</p>
+                                <p class="date-format-result" id="format4"></p>
+                                <p class="date-format-code">toLocaleString('th-TH', {dateStyle: 'full', timeStyle:
+                                    'medium'})</p>
+                            </div>
+
+                            <div class="date-format">
+                                <p class="date-format-title">รูปแบบที่ 5: วันที่แบบเต็ม</p>
+                                <p class="date-format-result" id="format5"></p>
+                                <p class="date-format-code">toLocaleDateString('th-TH', {dateStyle: 'full'})</p>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="date-format">
+                                <p class="date-format-title">รูปแบบที่ 6: เวลาแบบกลาง</p>
+                                <p class="date-format-result" id="format6"></p>
+                                <p class="date-format-code">toLocaleTimeString('th-TH', {timeStyle: 'medium'})</p>
+                            </div>
+
+                            <div class="date-format">
+                                <p class="date-format-title">รูปแบบที่ 7: วันที่และเวลาแบบสั้น</p>
+                                <p class="date-format-result" id="format7"></p>
+                                <p class="date-format-code">toLocaleString('th-TH', {dateStyle: 'short', timeStyle:
+                                    'short'})</p>
+                            </div>
+
+                            <div class="date-format">
+                                <p class="date-format-title">รูปแบบที่ 8: วันที่แบบสั้นและเวลาแบบเต็ม</p>
+                                <p class="date-format-result" id="format8"></p>
+                                <p class="date-format-code">วันที่แบบสั้น + เวลาแบบเต็ม (ชั่วโมง:นาที:วินาที น.)</p>
+                            </div>
+
+                            <div class="date-format">
+                                <p class="date-format-title">รูปแบบที่ 9: วันที่แบบสั้นและเวลาแบบสั้น</p>
+                                <p class="date-format-result" id="format9"></p>
+                                <p class="date-format-code">วันที่แบบสั้น + เวลาแบบสั้น (ชั่วโมง:นาที น.)</p>
+                            </div>
+
+                            <div class="date-format">
+                                <p class="date-format-title">เวลาปัจจุบัน (อัพเดททุกวินาที)</p>
+                                <p class="date-format-result" id="currentTime"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ส่วนแสดงโค้ด -->
+                <div class="bg-gray-50 rounded-lg shadow-md p-4">
+                    <h2 class="text-xl font-semibold mb-4 text-gray-700">โค้ด JavaScript สำหรับแปลงวันที่และเวลาภาษาไทย
+                    </h2>
+                    <div class="code-container">
+                        <pre><code><span class="comment">// รูปแบบที่ 1: วันที่แบบสั้น</span>
+<span class="keyword">var</span> <span class="variable">convertDate11</span> = <span class="keyword">new</span> <span class="function">Date</span>().<span class="function">toLocaleDateString</span>(<span class="string">"th-TH"</span>, {
+  <span class="variable">day</span>: <span class="string">"numeric"</span>,
+  <span class="variable">month</span>: <span class="string">"short"</span>,
+  <span class="variable">year</span>: <span class="string">"numeric"</span>,
+  <span class="variable">weekday</span>: <span class="string">"short"</span>
+});
+
+<span class="comment">// รูปแบบที่ 2: วันที่แบบยาว</span>
+<span class="keyword">var</span> <span class="variable">convertDate12</span> = <span class="keyword">new</span> <span class="function">Date</span>().<span class="function">toLocaleDateString</span>(<span class="string">"th-TH"</span>, {
+  <span class="variable">day</span>: <span class="string">"numeric"</span>,
+  <span class="variable">month</span>: <span class="string">"long"</span>,
+  <span class="variable">year</span>: <span class="string">"numeric"</span>,
+  <span class="variable">weekday</span>: <span class="string">"long"</span>
+});
+
+<span class="comment">// รูปแบบที่ 3: เวลาพร้อมวันที่แบบสั้น</span>
+<span class="keyword">var</span> <span class="variable">convertDate13</span> = <span class="keyword">new</span> <span class="function">Date</span>().<span class="function">toLocaleTimeString</span>(<span class="string">"th-TH"</span>, {
+  <span class="variable">day</span>: <span class="string">"numeric"</span>,
+  <span class="variable">month</span>: <span class="string">"short"</span>,
+  <span class="variable">year</span>: <span class="string">"numeric"</span>,
+  <span class="variable">weekday</span>: <span class="string">"short"</span>
+});
+
+<span class="comment">// รูปแบบที่ 4: วันที่และเวลาแบบเต็ม</span>
+<span class="keyword">const</span> <span class="variable">now</span> = <span class="keyword">new</span> <span class="function">Date</span>();
+<span class="keyword">const</span> <span class="variable">convertDate14</span> = <span class="variable">now</span>.<span class="function">toLocaleString</span>(<span class="string">'th-TH'</span>, {
+  <span class="variable">dateStyle</span>: <span class="string">'full'</span>,
+  <span class="variable">timeStyle</span>: <span class="string">'medium'</span>
+});
+
+<span class="comment">// รูปแบบที่ 5: วันที่แบบเต็ม</span>
+<span class="keyword">const</span> <span class="variable">convertDate15</span> = <span class="variable">now</span>.<span class="function">toLocaleDateString</span>(<span class="string">'th-TH'</span>, {
+  <span class="variable">dateStyle</span>: <span class="string">'full'</span>
+});
+
+<span class="comment">// รูปแบบที่ 6: เวลาแบบกลาง</span>
+<span class="keyword">const</span> <span class="variable">convertDate16</span> = <span class="variable">now</span>.<span class="function">toLocaleTimeString</span>(<span class="string">'th-TH'</span>, {
+  <span class="variable">timeStyle</span>: <span class="string">'medium'</span>
+});
+
+<span class="comment">// รูปแบบที่ 7: วันที่และเวลาแบบสั้น</span>
+<span class="keyword">const</span> <span class="variable">convertDate17</span> = <span class="variable">now</span>.<span class="function">toLocaleString</span>(<span class="string">'th-TH'</span>, {
+  <span class="variable">dateStyle</span>: <span class="string">'short'</span>,
+  <span class="variable">timeStyle</span>: <span class="string">'short'</span>
+});
+
+<span class="comment">// รูปแบบที่ 8: วันที่แบบสั้นและเวลาแบบเต็ม</span>
+<span class="keyword">var</span> <span class="variable">convertDate18</span> = <span class="keyword">new</span> <span class="function">Date</span>().<span class="function">toLocaleDateString</span>(<span class="string">"th-TH"</span>, {
+  <span class="variable">day</span>: <span class="string">"numeric"</span>,
+  <span class="variable">month</span>: <span class="string">"short"</span>,
+  <span class="variable">year</span>: <span class="string">"numeric"</span>,
+  <span class="variable">weekday</span>: <span class="string">"short"</span>
+});
+
+<span class="keyword">var</span> <span class="variable">convertTime18</span> = <span class="keyword">new</span> <span class="function">Date</span>().<span class="function">toLocaleTimeString</span>(<span class="string">"th-TH"</span>, {
+  <span class="variable">hour</span>: <span class="string">"2-digit"</span>,
+  <span class="variable">minute</span>: <span class="string">"2-digit"</span>,
+  <span class="variable">second</span>: <span class="string">"2-digit"</span>,
+  <span class="variable">hour12</span>: <span class="keyword">false</span>
+}) + <span class="string">" น."</span>;
+
+<span class="keyword">var</span> <span class="variable">fullDateTime1</span> = <span class="string">`${convertDate18} ${convertTime18}`</span>;
+
+<span class="comment">// รูปแบบที่ 9: วันที่แบบสั้นและเวลาแบบสั้น</span>
+<span class="keyword">var</span> <span class="variable">convertDate19</span> = <span class="keyword">new</span> <span class="function">Date</span>().<span class="function">toLocaleDateString</span>(<span class="string">"th-TH"</span>, {
+  <span class="variable">day</span>: <span class="string">"numeric"</span>,
+  <span class="variable">month</span>: <span class="string">"short"</span>,
+  <span class="variable">year</span>: <span class="string">"numeric"</span>,
+});
+
+<span class="keyword">var</span> <span class="variable">convertTime19</span> = <span class="keyword">new</span> <span class="function">Date</span>().<span class="function">toLocaleTimeString</span>(<span class="string">"th-TH"</span>, {
+  <span class="variable">hour</span>: <span class="string">"2-digit"</span>,
+  <span class="variable">minute</span>: <span class="string">"2-digit"</span>,
+  <span class="variable">hour12</span>: <span class="keyword">false</span>
+}) + <span class="string">" น."</span>;
+
+<span class="keyword">var</span> <span class="variable">fullDateTime2</span> = <span class="string">`${convertDate19} ${convertTime19}`</span>;</code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer class="mt-6 text-center text-white">
+            <p>© ครูอั๋น ใจดี <span id="year"> </span></p>
+        </footer>
+    </div>
+
+    <script>
+        window.onload = () => {
+            // แปลงวันที่เป็นภาษาไทย
+            const thaiDate = new Date().toLocaleDateString("th-TH", {
+                day: "numeric",
+                month: "long",
+                year: "numeric",
+                weekday: "long"
+            });
+
+            // แปลงเวลาเป็นภาษาไทย
+            const thaiTime = new Date().toLocaleTimeString("th-TH", {
+                hour: "2-digit",
+                minute: "2-digit",
+                // second: "2-digit",
+                hour12: false
+            }) + " น.";
+
+            // รวมวันที่และเวลา
+            const fullDateTime = `${thaiDate} ${thaiTime}`;
+
+            // อัปเดตเนื้อหาใน element ที่มี id="year"
+            document.getElementById("year").textContent = fullDateTime;
+        };
+
+        // ฟังก์ชันอัพเดทวันที่และเวลา
+        function updateDateTime() {
+            const now = new Date();
+
+            // รูปแบบที่ 1: วันที่แบบสั้น
+            const convertDate11 = now.toLocaleDateString("th-TH", {
+                day: "numeric",
+                month: "short",
+                year: "numeric",
+                weekday: "short"
+            });
+            document.getElementById('format1').textContent = convertDate11;
+
+            // รูปแบบที่ 2: วันที่แบบยาว
+            const convertDate12 = now.toLocaleDateString("th-TH", {
+                day: "numeric",
+                month: "long",
+                year: "numeric",
+                weekday: "long"
+            });
+            document.getElementById('format2').textContent = convertDate12;
+
+            // รูปแบบที่ 3: เวลาพร้อมวันที่แบบสั้น
+            const convertDate13 = now.toLocaleTimeString("th-TH", {
+                day: "numeric",
+                month: "short",
+                year: "numeric",
+                weekday: "short"
+            });
+            document.getElementById('format3').textContent = convertDate13;
+
+            // รูปแบบที่ 4: วันที่และเวลาแบบเต็ม
+            const convertDate14 = now.toLocaleString('th-TH', {
+                dateStyle: 'full',
+                timeStyle: 'medium'
+            });
+            document.getElementById('format4').textContent = convertDate14;
+
+            // รูปแบบที่ 5: วันที่แบบเต็ม
+            const convertDate15 = now.toLocaleDateString('th-TH', {
+                dateStyle: 'full'
+            });
+            document.getElementById('format5').textContent = convertDate15;
+
+            // รูปแบบที่ 6: เวลาแบบกลาง
+            const convertDate16 = now.toLocaleTimeString('th-TH', {
+                timeStyle: 'medium'
+            });
+            document.getElementById('format6').textContent = convertDate16;
+
+            // รูปแบบที่ 7: วันที่และเวลาแบบสั้น
+            const convertDate17 = now.toLocaleString('th-TH', {
+                dateStyle: 'short',
+                timeStyle: 'short'
+            });
+            document.getElementById('format7').textContent = convertDate17;
+
+            // รูปแบบที่ 8: วันที่แบบสั้นและเวลาแบบเต็ม
+            const convertDate18 = now.toLocaleDateString("th-TH", {
+                day: "numeric",
+                month: "short",
+                year: "numeric",
+                weekday: "short"
+            });
+
+            const convertTime18 = now.toLocaleTimeString("th-TH", {
+                hour: "2-digit",
+                minute: "2-digit",
+                second: "2-digit",
+                hour12: false
+            }) + " น.";
+
+            const fullDateTime1 = `${convertDate18} ${convertTime18}`;
+            document.getElementById('format8').textContent = fullDateTime1;
+
+            // รูปแบบที่ 9: วันที่แบบสั้นและเวลาแบบสั้น
+            const convertDate19 = now.toLocaleDateString("th-TH", {
+                day: "numeric",
+                month: "short",
+                year: "numeric",
+            });
+
+            const convertTime19 = now.toLocaleTimeString("th-TH", {
+                hour: "2-digit",
+                minute: "2-digit",
+                hour12: false
+            }) + " น.";
+
+            const fullDateTime2 = `${convertDate19} ${convertTime19}`;
+            document.getElementById('format9').textContent = fullDateTime2;
+
+            // เวลาปัจจุบัน
+            document.getElementById('currentTime').textContent = fullDateTime2;
+        }
+
+        // เรียกใช้ฟังก์ชันเมื่อโหลดหน้าเว็บ
+        updateDateTime();
+        setInterval(updateDateTime, 1000);
+    </script>
+    <script>
+        (function () {
+            function c() {
+                var b = a.contentDocument || a.contentWindow.document;
+                if (b) {
+                    var d = b.createElement('script');
+                    d.innerHTML = "window.__CF$cv$params={r:'95bc40b18744732b',t:'MTc1MTk0MjgwMi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";
+                    b.getElementsByTagName('head')[0].appendChild(d)
+                }
+            } if (document.body) {
+                var a = document.createElement('iframe');
+                a.height = 1;
+                a.width = 1;
+                a.style.position = 'absolute';
+                a.style.top = 0;
+                a.style.left = 0;
+                a.style.border = 'none';
+                a.style.visibility = 'hidden';
+                document.body.appendChild(a);
+                if ('loading' !== document.readyState) c();
+                else if (window.addEventListener) document.addEventListener('DOMContentLoaded', c);
+                else {
+                    var e = document.onreadystatechange || function () { }; document.onreadystatechange = function (b) {
+                        e(b); 'loading' !== document.readyState && (document.onreadystatechange = e, c()
+                        )
+                    }
+                }
+            }
+        })();</script>
+</body>
+
+</html>

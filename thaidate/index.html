@@ -76,6 +76,23 @@
             font-size: 0.9rem;
             color: #334155;
         }
+
+        .header-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem; /* ระยะห่างระหว่างองค์ประกอบ */
+            flex-wrap: wrap; /* ป้องกันการล้นในหน้าจอเล็ก */
+        }
+        .header-container img {
+            flex-shrink: 0; /* ป้องกันรูปภาพย่อขนาด */
+        }
+        .header-container h1 {
+            margin: 0; /* ลบ margin เริ่มต้นของ h1 */
+        }
+        .header-container p {
+            margin-top: 0; /* ลบ margin-top เริ่มต้นของ p */
+        }
     </style>
 </head>
 
@@ -83,8 +100,9 @@
     <div class="max-w-5xl mx-auto">
         <div class="bg-white rounded-xl shadow-xl overflow-hidden">
             <!-- ส่วนหัว -->
-            <div class="bg-gradient-to-r from-red-500 to-pink-600 p-6 text-white">
-                <h1 class="text-2xl md:text-3xl font-bold text-center">วันที่และเวลาภาษาไทย</h1>
+            <div class="bg-gradient-to-r from-blue-500 to-pink-600 p-6 text-white header-container">
+                <img src="https://aliyahaunjo.github.io/image/kruaun.png" width="100px">
+                <h1 class="text-2xl md:text-3xl font-bold text-center">❤️ครูอั๋น ใจดี❤️</h1>
                 <p class="text-center mt-2 text-blue-100">การแปลงวันที่และเวลาเป็นภาษาไทยด้วย JavaScript</p>
             </div>
 
@@ -254,7 +272,7 @@
         </div>
 
         <footer class="mt-6 text-center text-white">
-            <p>© ครูอั๋น ใจดี <span id="year"> </span></p>
+            <p>© ❤️ครูอั๋น ใจดี❤️ <span id="year"> </span></p>
         </footer>
     </div>
 
